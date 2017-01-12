@@ -37,7 +37,7 @@ GLProgram* DynamicLight::loadShader(const GLchar* vertexShader, const GLchar* fr
 	auto shader = ShaderCache::getInstance()->getGLProgram(fragmentShader);
 	if (!shader) {
 		shader = new GLProgram();
-		shader->initWithVertexShaderFilename(vertexShader, fragmentShader);
+		shader->initWithFilenames(vertexShader, fragmentShader);
 		shader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
 		shader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
 		shader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
@@ -130,7 +130,7 @@ void DynamicLight::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transf
 		createShadowMap(renderer, transform, flags);
 
 		// update shadowRenderShader textures
-		shadowRenderShader->setUniformTexture("u_texture", occlusionMapSprite->getTexture());
+		//shadowRenderShader->setUniformTexture("u_texture", occlusionMapSprite->getTexture());
 		shadowRenderShader->setUniformTexture("u_texture2", shadowMap1DSprite->getTexture());
 
 		finalShadowMapSprite->setColor({ 255, 255, 255 });
